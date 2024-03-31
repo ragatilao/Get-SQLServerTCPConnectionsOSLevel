@@ -36,13 +36,13 @@ function Get-SQLServerTCPConnectionsOSLevel
                 $TCPLocalAddress = $TCPConnectionDetail.LocalAddress 
 
                 $LocalHostName = $null
-                $LocalHostName = Resolve-DnsName "$TCPLocalAddress" -DnsOnly | Select-Object -ExpandProperty NameHost -ErrorAction SilentlyContinue
+                $LocalHostName = Resolve-DnsName "$TCPLocalAddress" -ErrorAction SilentlyContinue -DnsOnly | Select-Object -ExpandProperty NameHost
 
                 $TCPRemoteAddress = $null
                 $TCPRemoteAddress = $TCPConnectionDetail.RemoteAddress 
 
                 $RemoteHostName = $null
-                $RemoteHostName = Resolve-DnsName "$TCPRemoteAddress" -DnsOnly | Select-Object -ExpandProperty NameHost -ErrorAction SilentlyContinue
+                $RemoteHostName = Resolve-DnsName "$TCPRemoteAddress" -ErrorAction SilentlyContinue -DnsOnly | Select-Object -ExpandProperty NameHost
         
                 $SQLServerProcessDetail = New-Object -TypeName PSObject 
                 $SQLServerProcessDetail | Add-Member -MemberType NoteProperty -Name ProcessName -Value $SQLServerProcessName
